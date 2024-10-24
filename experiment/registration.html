@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <title> Registration page</title>
+    </head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 130vh;
+            margin: 0;
+        }
+        form {
+            width: 80%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+    <body>
+    <br><br><br><br><br><br><br><br><br><br>
+        <font face="TIMES NEW ROMAN" size="5">
+        <h1>Registration Form</h1>
+        <form action="submit.php" method="post" id="registrationForm" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" >
+            <span id="nameError" style="color: red;"></span>
+           <br><br>
+           <label for="password">Password:</label>
+           <input type="password" id="password" name="password">
+           <span id="passwordError" style="color: red;"></span><br><br>
+           <label for="email">Email:</label>
+           <input type="email" id="email" name="email">
+           <span id="emailError" style="color: red;"></span><br><br>
+           <label for="phone">Phone Number:</label>
+           <input type="tel" id="phone" name="phone">
+           <span id="phoneError" style="color: red;"></span><br><br>
+
+            <label>Sex:</label>
+            <input type="radio" id="male" name="sex" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="sex" value="female">
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="sex" value="other">
+            <label for="other">Other</label><br><br>
+            <label for="dob">Date of Birth:</label>
+            <select id="day" name="day">
+                <option value="" disabled selected>Day</option>
+            </select>
+            <select id="month" name="month">
+                <option value="" disabled selected>Month</option>
+            </select>
+            <select id="year" name="year">
+                <option value="" disabled selected>Year</option>
+            </select><br><br>
+            <label>Languages Known:</label>
+            <input type="checkbox" id="english" name="languages[]" value="english">
+            <label for="english">English</label>
+            <input type="checkbox" id="telugu" name="languages[]" value="telugu">
+            <label for="telugu">Telugu</label>
+            <input type="checkbox" id="hindi" name="languages[]" value="hindi">
+            <label for="hindi">Hindi</label>
+            <input type="checkbox" id="tamil" name="languages[]" value="tamil">
+            <label for="tamil">Tamil</label><br><br>
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4" cols="50"></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        function validateForm() {
+            const name = document.getElementById('name').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            const nameRegex = /^[a-zA-Z]{6,}$/;
+            if (!nameRegex.test(name)) {
+                document.getElementById('nameError').textContent = 'Name should contain alphabets and have a minimum length of 6 characters.';
+                return false;
+            } else {
+                document.getElementById('nameError').textContent = '';
+            }
+            if (password.length < 6) {
+                document.getElementById('passwordError').textContent = 'Password should have a minimum length of 6 characters.';
+                return false;
+            } else {
+                document.getElementById('passwordError').textContent = '';
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = 'Enter a valid email address (e.g., name@domain.com).';
+                return false;
+            } else {
+                document.getElementById('emailError').textContent = '';
+            }
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone)) {
+                document.getElementById('phoneError').textContent = 'Phone number should contain 10 digits only.';
+                return false;
+            } else {
+                document.getElementById('phoneError').textContent = '';
+            }
+            return true;
+        }
+    </script>
+
+</body>
+</html>
+
+
+
